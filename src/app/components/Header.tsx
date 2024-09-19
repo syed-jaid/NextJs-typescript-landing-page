@@ -1,7 +1,9 @@
+"use client";
 import { Box, Flex, Link, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <Box>
       <Flex
@@ -43,7 +45,64 @@ const Header = () => {
             LuggageShare
           </span>
         </Flex>
-        <Flex gap="32px" alignItems="center">
+        <div className="sm:hidden flex gap-[32px] items-center relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-menu h-6 w-6 cursor-pointer"
+            data-id="17"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+          {showMenu && (
+            <div className="sm:hidden absolute w-[110px] top-[30px] border-[#282a30] border-[1px] right-0 flex flex-col gap-[22px] items-start bg-white p-2 rounded-lg shadow-xl">
+              <Link
+                onClick={() => setShowMenu(!showMenu)}
+                href="#"
+                fontSize="14px"
+                fontWeight="500"
+                cursor="pointer"
+              >
+                Features
+              </Link>
+              <Link
+                onClick={() => setShowMenu(!showMenu)}
+                href="#"
+                fontSize="14px"
+                fontWeight="500"
+                cursor="pointer"
+              >
+                How It Works
+              </Link>
+              <Link
+                onClick={() => setShowMenu(!showMenu)}
+                href="#"
+                fontSize="14px"
+                fontWeight="500"
+                cursor="pointer"
+              >
+                Join Waitlist
+              </Link>
+              <button
+                onClick={() => setShowMenu(!showMenu)}
+                className="border-[1px] border-[#e4e4e7] text-[14px] font-[500] items-center justify-center whitespace-nowrap rounded-md h-10 px-4 py-2  md:hidden inline-flex"
+              >
+                Sign In
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="hidden sm:flex gap-[32px] items-center">
           <Link href="#" fontSize="14px" fontWeight="500" cursor="pointer">
             Features
           </Link>
@@ -53,7 +112,7 @@ const Header = () => {
           <Link href="#" fontSize="14px" fontWeight="500" cursor="pointer">
             Join Waitlist
           </Link>
-        </Flex>
+        </div>
         <button className="border-[1px] border-[#e4e4e7] text-[14px] font-[500] items-center justify-center whitespace-nowrap rounded-md h-10 px-4 py-2 hidden md:inline-flex">
           Sign In
         </button>

@@ -1,15 +1,20 @@
 "use client";
-import { Box, Flex, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 
 const Features = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    beforeChange: (current: number, next: number) => setActiveSlide(next),
   };
 
   return (
@@ -23,8 +28,8 @@ const Features = () => {
         <Text mb="48px" fontSize="48px" fontWeight="700" textAlign="center">
           Why Choose LuggageShare?
         </Text>
+        {/* Dots will appear here, outside the slider */}
         <Box mx="auto" maxW="1200px">
-          {/* Adjust maxWidth as needed */}
           <Slider {...settings}>
             <Box
               mx="auto"
@@ -42,9 +47,9 @@ const Features = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 data-id="4"
               >
                 <line x1="12" x2="12" y1="2" y2="22"></line>
@@ -59,6 +64,7 @@ const Features = () => {
                 transporting items during your travels.
               </Text>
             </Box>
+
             <Box
               mx="auto"
               p="24px"
@@ -75,9 +81,9 @@ const Features = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 data-id="1"
               >
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
@@ -92,6 +98,7 @@ const Features = () => {
                 your items are in safe hands throughout the journey.
               </Text>
             </Box>
+
             <Box
               mx="auto"
               p="24px"
@@ -108,9 +115,9 @@ const Features = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 data-id="3"
               >
                 <circle cx="12" cy="12" r="10"></circle>
@@ -126,6 +133,7 @@ const Features = () => {
                 compared to traditional shipping methods.
               </Text>
             </Box>
+
             <Box
               mx="auto"
               p="24px"
@@ -142,12 +150,11 @@ const Features = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                data-id="2"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <path d="M4 14a1 1 0 0 1-.78-1.6319.9-10.2a.5.5 0 0 1 .86.461-1.92 6...1.631-9.9 10.2a.5.5 0 0 1-.86-.461.92-6.02a1 1 0 0 1 11 14z"></path>
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg>
 
               <Text fontSize="24px" fontWeight="600" mb="48px">
@@ -160,6 +167,22 @@ const Features = () => {
               </Text>
             </Box>
           </Slider>
+        </Box>
+
+        {/* Dots outside the slider */}
+        <Box mt="20px" display="flex" justifyContent="center">
+          <ul style={{ display: "flex", gap: "8px" }}>
+            {Array.from({ length: 4 }, (_, i) => (
+              <Box
+                key={i}
+                width="12px"
+                height="12px"
+                bg={i === activeSlide ? "#373737" : "#d1d5db"}
+                borderRadius="50%"
+                cursor="pointer"
+              ></Box>
+            ))}
+          </ul>
         </Box>
       </Box>
     </Box>
