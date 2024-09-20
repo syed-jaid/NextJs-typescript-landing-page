@@ -15,7 +15,7 @@ const Header = () => {
         position="fixed"
         alignItems="center"
         sx={{
-          backdropFilter: "blur(10px)",
+          backdropFilter: "blur(14px)",
         }}
         justifyContent="space-between"
         borderBottom="1px solid #e5e7eb"
